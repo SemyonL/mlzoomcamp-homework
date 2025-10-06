@@ -34,14 +34,14 @@ Machine learning approach:
 Essence behind superviced machine learning: the algorithm learns by example. There is source data and there is target data used for pattern prediction learning.
 
 Essential things from recap of e-mail spam filtering:
-1. Feature extraction into feature matrix (X)
-2. Target varialbe into vector (y)
+1. Feature extraction into feature matrix ($X$)
+2. Target varialbe into vector ($y$)
 
 #### Formal definition of supervised machine learning:
-g(X) ~= y
-* g(X) - model
-* X - features matrix
-* y - target vector
+$g(X) \approx y$
+* $g(X)$ - model
+* $X$ - features matrix
+* $y$ - target vector
 
 ### Types of supervicesd ML:
 * Regression (car/house price prediction)
@@ -86,9 +86,9 @@ and then iterate.
 Try different models and choose the best one: model selection process.
 
 1. Choose 80% of entire data set for training. Remaining 20% is used for validation.
-2. Extract feature matrix X and y from the training data and train the model g.
-3. Extract feature matrix X_v and y_v from validation data set.
-4. Then take different model types g_1, g_2, g_3 and calculate probablity based on y_v ~= g(X_v) for each g in g_1, g_2, g_3...
+2. Extract feature matrix $X$ and $y$ from the training data and train the model $g$.
+3. Extract feature matrix $X_v$ and $y_v$ from validation data set.
+4. Then take different model types $g_1, g_2, g_3$ and calculate probablity based on $y_v \approx g(X_v)$ for each $g$ in $g_1, g_2, g_3$...
 
 Multiple comparisons problem: perform the same comparison many times and evaluate it on the same data set.
 
@@ -240,7 +240,7 @@ df.to_dict(orient='records') #return a list of dictionaries
 ## Summary
 * Intro to ML, features, target variable, Model
 * Rules based vs ML systems
-* Supervised ML, g(X) ~= y, g - model, X - features, y - target
+* Supervised ML, $g(X) \approx y$, $g$ - model, $X$ - features, $y$ - target
 * ML pipeline or workflow
 * Modeling and Model Selection
 * Environment setup
