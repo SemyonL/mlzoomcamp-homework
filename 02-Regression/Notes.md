@@ -40,7 +40,7 @@ for col in df.columns:
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-%mathplotlib_inline
+%matplotlib inline
 
 sns.histplot(df.msrp, bins=50) #Histogram
 sns.histplot(df.msrp[df.msrp < 100000], bins=50)
@@ -72,7 +72,7 @@ df.iloc[:10] #first 10 indexed records
 Data sets needs to be suffeled to remove any accidential order
 
 ```python
-idx = np.arrange(n)
+idx = np.arange(n)
 np.random.suffle(idx)
 df_train = df.iloc[idx[:n_train]]
 df_val = df.iloc[idx[n_train:n_train+n_val]]
@@ -166,7 +166,7 @@ w_full = XTX_inv.dot(X.T).dot(y) #(X^T X)^{-1} X^T y
 df_train.dtypes
 base = ['col1', 'col2', 'coln']
 #DO NOT FORGET to check and fill missing values.
-X_train = df_train[base].values.fillna(0) #replacing with zeroes, not the best scenario but works fine. Means features are ignored.
+X_train = df_train[base].fillna(0).values #replacing with zeroes, not the best scenario but works fine. Means features are ignored.
 w0, w = train_regression(X_train, y_train)
 
 y_pred = w0 + X_train.dot(w)
@@ -212,7 +212,7 @@ In some cases $(X^T X)^{-1}$ does not exists. If features have the same values o
 To solve that issue and ensure that $(X^T X)^{-1}$ exists, it is possible to add small number to the main diagonal of $X$, e.g. $+0.0001$
 
 ```python
-XTX = XTX + 0.01 * np.eye(XTX.shape[0]) #this is regularisation or controling the weights they they won't go into cosmos. r = 0.01
+XTX = XTX + 0.01 * np.eye(XTX.shape[1]) #this is regularisation or controling the weights they they won't go into cosmos. r = 0.01
 np.linalg.inv(XTX) #(X^T X)^{-1}
 ```
 
