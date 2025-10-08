@@ -119,28 +119,27 @@ np.expm1(X) #exponent (X - 1)
 ```
 
 ## 2.6 Linear regression vector form
+$g(x_i) = w_0 + \displaystyle\sum_{j=1}^{n}x_{ij} \cdot w_j = w_0 + x_i^Tw =$
 
-$ g(x_i) = w_0 + \displaystyle\sum_{j=1}^{n}x_{ij} \cdot w_j = w_0 + x_i^Tw = $
+$= w_0 \cdot x_{i0} + x_i^Tw$ - vector form, where always $x_{i0} = 1$, $x_{i0}$ is added with value 1 to have two vectors.
 
-$ = w_0 \cdot x_{i0} + x_i^Tw$ - vector form, where always $x_{i0} = 1$, $x_{i0}$ is added with value 1 to have two vectors.
+$w = [w_0, w_1, ..., w_n], x_i = [x_{i0}, x_{i1}, ..., x_{in}]$
 
-$ w = [w_0, w_1, ..., w_n], x_i = [x_{i0}, x_{i1}, ..., x_{in}] $
-
-$w^Tx_i = x_i^Tw = w_0 $
+$w^Tx_i = x_i^Tw = w_0$
 
 $X$ - features matrix (n+m)
-$$
+```math
 \begin{bmatrix} 1 & x_{11} & ... & x_{1n} \\ 1 & x_{21} & ... & x_{2n} \\ 1 & ... & ... & ... \\ 1 & x_{m1} & ... & x_{mn} \end{bmatrix}
 \cdot
 \begin{bmatrix} w_0 \\ w_1 \\ ... \\ w_n \end{bmatrix}
 =
 \begin{bmatrix} x_1^T \cdot w \\ x_2^T \cdot w \\ ... \\ x_m^T \cdot w \end{bmatrix}
-$$
-Features $X$ * weights $w$ = Prediction $y_p$ : $ X \cdot w = y_p $
+```
+Features $X$ * weights $w$ = Prediction $y_p$ : $X \cdot w = y_p$
 
 ## 2.7 Training a linear regression model
 
-$ g(X) = X \cdot w \approx y $
+$g(X) = X \cdot w \approx y$
 
 Assume $X^{-1} \cdot X \cdot w = X^{-1} \cdot y  \implies  w = X^{-1} \cdot y$
 
@@ -176,11 +175,11 @@ sns.histplot(y_train, color='blue', alpha=0.5, bins=50)
 
 ## 2.9 Root Mean Squared Error (RMSE)
 
-RMSE $ = \sqrt{\displaystyle\frac1m \displaystyle\sum_{i=1}^m ( g(x_i) - y_i )^2 }$ , where $g(x_i)$ - prediction, $y_i$ - actual value
+RMSE $= \sqrt{\displaystyle\frac1m \displaystyle\sum_{i=1}^m ( g(x_i) - y_i )^2 }$ , where $g(x_i)$ - prediction, $y_i$ - actual value
 
-$ ( g(x_i) - y_i )^2 $ - squared difference between prediction and actual value or *squared error*
+$(g(x_i) - y_i)^2$ - squared difference between prediction and actual value or *squared error*
 
-$ \displaystyle\frac1m ( g(x_i) - y_i )^2$ - *mean squared error*
+$\displaystyle\frac1m ( g(x_i) - y_i )^2$ - *mean squared error*
 
 ## 2.10 Validating the model
 
@@ -206,7 +205,7 @@ for v in [2, 3, 4]:
 
 ## 2.13 Regularization
 
-$ w = (X^T X)^{-1} \cdot X^T \cdot y $
+$w = (X^T X)^{-1} \cdot X^T \cdot y$
 
 In some cases $(X^T X)^{-1}$ does not exists. If features have the same values or duplicated columns then inverse does **not** exists. The reason usually that data is not clean or incorrect.
 To solve that issue and ensure that $(X^T X)^{-1}$ exists, it is possible to add small number to the main diagonal of $X$, e.g. $+0.0001$
