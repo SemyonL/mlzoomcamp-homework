@@ -24,7 +24,7 @@ Running Linux command in jupyter (use ! before the command, $var - for referenci
 Useful methods:
 ```python
 df.heads().T #Transpose the data head when a lot of columns to see them in a list
-df.to_numeric(df.totalcharges, errors='coerce') #Convert column to numeric value
+pd.to_numeric(df.totalcharges, errors='coerce') #Convert column to numeric value
 df.churn = (df.churn == 'yes').astype(int) #Replace yes/no text with 0/1. Do not forget to 
 ```
 
@@ -43,10 +43,10 @@ from sklearn.model_selection import train_test_split #Library used to automate d
 
 df_full_train, df_test = train_test_split(df, test_size=0.2, random_state=1) #Split data set into Full train (80%) and test (20$) data sets
 
-df_train, df_val = train_test_split(df, test_size=0.25, random_state=1) #Note test_size is different due to full_train is already 80%
+df_train, df_val = train_test_split(df_full_train, test_size=0.25, random_state=1) #Note test_size is different due to full_train is already 80%
 
 for df in [df_train, df_val, df_test]:
-    df.reset_index(drop=True)
+    df.reset_index(drop=True, inplace=True)
 
 y_train = df_train.churn.values #TODO: Do it for all 3 data sets
 
@@ -177,7 +177,7 @@ $G \in \{F, M\}, C \in \{M, Y_1, Y_2\}$
 from sklearn.feature_extraction import DictVectorizer
 
 dicts = df_train[['gender','contract']].iloc[:100].to_dict(orient='records') #Turns columns to a list of dictionaries by rows
-dv = DictVectorizer(sparce=false) #Not to use Sparce Matrices
+dv = DictVectorizer(sparce=False) #Not to use Sparce Matrices
 dv.fit(dicts) #Train dv on out data, so the values can be infered later
 dv.transform(dicts) #Produces sparce row format by default, modified by sparce parameter in constructor (google Sparce Matrix), otherwise produces array or vectors
 # DictVectorizer will leave numerical values intacts, and categorical variables are converted to vector with {0,1} values.
@@ -250,7 +250,7 @@ model.intercept_[0] #Bias (w0) called incercept
 
 #Using model
 model.predict(X_train) #HARD PREDICTIONS
-model.predict_proba(X_train) #Soft predictions
+model.predict_proba(X_train) #Soft predictions, return two dementional matrix
 #Two columns: probability of 0, probablity of 1
 y_pred = model.predict_proba(X_val)[:, 1]
 y_pred >= 0.5 #Convert soft prediction to hard prediction
@@ -306,13 +306,13 @@ sigmoid(_) # _ is magic variable here which means the previous output in jupyter
 ## 3.12 Using the model
 
 ```python
-dicts_full_train = df_full_train[categorica + numerical].to_dict(orient='records')
+dicts_full_train = df_full_train[categorical + numerical].to_dict(orient='records')
 dv = DictVectorizer(sparse=False)
 X_full_train = dv.fit_transform(dicts_full_train)
 y_full_train = df_full_train_churn.values
 model = LogisticsRegression().fit(X_full_train, y_full_train)
 
-dicts_test = df_test[categorica + numerical].to_dict
+dicts_test = df_test[categorica + numerical].to_dict(orient='records')
 X_test = dv.transform(dicts_test)
 y_pred = model.predict_proba(X_test)[:, 1]
 
