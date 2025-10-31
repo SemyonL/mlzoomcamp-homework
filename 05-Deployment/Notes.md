@@ -324,7 +324,8 @@ ENTRYPOINT ["uvicorn", "predict:app", "--host", "0.0.0.0", "--port", "9696"]
 # There is no need to use uvrun because it is only one python environment in docker
 ```
 ```bash
-docker run -it --rm -p 9696:9696
+docker build -t predict-churn .
+docker run -it --rm -p 9696:9696 predict-churn
 ```
 
 ### Deployment to Fly.io
