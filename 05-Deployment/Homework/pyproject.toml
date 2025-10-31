@@ -1,0 +1,11 @@
+[project]
+name = "mlzoomcamp-homework-deployment"
+version = "0.1.0"
+description = "Homework for ML Zoom Camp Module 5"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.120.2",
+    "requests>=2.32.5",
+    "scikit-learn==1.6.1",
+    "uvicorn>=0.38.0",
+]
