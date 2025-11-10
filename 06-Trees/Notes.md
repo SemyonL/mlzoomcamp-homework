@@ -68,7 +68,7 @@ from skleaen.metrics import roc_auc_score
 train_dicts = df_train.fillna(0).to_dict(orient='records')
 dv = DictVectorizer(sparce=False)
 X_train = dv.fit_transform(train_dicts) # Feature matrix
-dv.get_feature_names()
+dv.get_feature_names_out()
 
 dt = DecisionTreeClassifier()
 dt.fit(X_train, y_train)
@@ -97,7 +97,7 @@ Decision stump - a decision tree with max_depth=1
 ```python
 # Tree visualization
 from sklearn.tree import export_text
-print(export_text(dt, feature_names=dv.get_feature_names()))
+print(export_text(dt, feature_names=dv.get_feature_names_out()))
 ```
 
 ## 6.4 Decision tree learning algorithm
@@ -296,7 +296,7 @@ Gradient boosting - an ensemble learning technique that builds models sequential
 ```python
 import xgboost as xgb
 
-features = dv.get_feature_names()
+features = dv.get_feature_names_out()
 dtrain = xgb.DMatrix(X_train, label=y_train, feature_names=features)
 dval = xgb.DMatrix(X_val, label=y_val, feature_names=features)
 
