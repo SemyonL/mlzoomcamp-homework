@@ -336,12 +336,12 @@ def parse_xgb_output(output):
 
         results.append((it, train, val))
     
-    df_results = pd.DataFrame(results, columns=['num_iterations', 'auc_train', 'auc_val'])
+    df_results = pd.DataFrame(results, columns=['num_iteration', 'auc_train', 'auc_val'])
     return df_results
 
 df_score = parse_xgb_output(output)
-plt.plot(df_score.num_iterations, df_score.auc_train, label='Train AUC')
-plt.plot(df_score.num_iterations, df_score.auc_val, label='Validation AUC')
+plt.plot(df_score.num_iteration, df_score.auc_train, label='Train AUC')
+plt.plot(df_score.num_iteration, df_score.auc_val, label='Validation AUC')
 plt.legend()
 ```
 
